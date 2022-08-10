@@ -2,10 +2,11 @@
 {{$related :=  .Site.RegularPages }}
 	<h2 class="post_related">Posts in this Series</h2>
 	<ul>
-	  {{ range $related }}
-	      {{ if in .Params.series "intro"}}
-	      <li><a href="{{ .Permalink }}" class="nav-link" title="{{ .Title }}">{{ .Title}}</a></li>
-		  {{ end }}
-	  {{ end }}
+		{{$series := .Params.series}}
+			{{range $related}}
+			{{ if eq $series .Params.series}}
+			<li><a href="{{ .Permalink }}" class="nav-link" title="{{ .Title }}">{{ .Title }}</a></li>
+			{{ end }}
+	    {{end}}
 	</ul>
 {{ end }}
